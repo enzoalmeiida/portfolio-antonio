@@ -1,13 +1,42 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import emailjs from '@emailjs/browser'
 
 function App() {
   const [activeNav, setActiveNav] = useState(null)
   const [expandedProject, setExpandedProject] = useState(null)
+  const [contactStatus, setContactStatus] = useState('')
+  const contactFormRef = useRef(null)
+
+  const contactEmail = 'antoniozakzukduarte@gmail.com'
+  const emailJsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+  const emailJsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+  const emailJsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id)
     element?.scrollIntoView({ behavior: 'smooth' })
     setActiveNav(id)
+  }
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault()
+    setContactStatus('')
+
+    if (!emailJsServiceId || !emailJsTemplateId || !emailJsPublicKey) {
+      setContactStatus('Configure as variáveis do EmailJS para ativar o envio.')
+      return
+    }
+
+    try {
+      await emailjs.sendForm(emailJsServiceId, emailJsTemplateId, contactFormRef.current, {
+        publicKey: emailJsPublicKey,
+      })
+
+      setContactStatus('Mensagem enviada com sucesso.')
+      contactFormRef.current?.reset()
+    } catch {
+      setContactStatus('Não foi possível enviar agora. Tente novamente em instantes.')
+    }
   }
 
   const projects = [
@@ -276,7 +305,7 @@ function App() {
           <div>
             <p className="text-[#FF8E00] uppercase tracking-[0.2em] text-xs mb-4">Contato</p>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
-              Vamos Criar Algo Incrível
+               Entre em contato comigo!
             </h2>
             <p className="text-white/80 text-lg mb-8 leading-relaxed max-w-xl">
               Tenho interesse em projetos que unem criatividade, estratégia e execução impecável. Se você quer colaborar ou tem uma oportunidade, envie uma mensagem e eu retorno em breve.
@@ -284,7 +313,7 @@ function App() {
 
             <div className="space-y-4">
               <a
-                href="mailto:antonio@email.com"
+                href={`mailto:${contactEmail}`}
                 className="group flex items-center gap-4 rounded-xl border border-[#003366] bg-[#001428]/55 px-5 py-4 hover:border-[#FF8E00]/70 hover:bg-[#002347]/75 transition-all duration-300"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FF8E00]/20 text-[#FF8E00]">
@@ -295,12 +324,12 @@ function App() {
                 </span>
                 <span>
                   <span className="block text-white font-semibold">E-mail</span>
-                  <span className="block text-white/65 text-sm group-hover:text-white/85 transition-colors">antonio@email.com</span>
+                  <span className="block text-white/65 text-sm group-hover:text-white/85 transition-colors">{contactEmail}</span>
                 </span>
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/antoniozakzukduarte/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 rounded-xl border border-[#003366] bg-[#001428]/55 px-5 py-4 hover:border-[#FF8E00]/70 hover:bg-[#002347]/75 transition-all duration-300"
@@ -317,7 +346,7 @@ function App() {
               </a>
 
               <a
-                href="https://wa.me/5521987654321"
+                href="https://wa.me/5511994900765"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 rounded-xl border border-[#003366] bg-[#001428]/55 px-5 py-4 hover:border-[#FF8E00]/70 hover:bg-[#002347]/75 transition-all duration-300"
@@ -329,7 +358,7 @@ function App() {
                 </span>
                 <span>
                   <span className="block text-white font-semibold">WhatsApp</span>
-                  <span className="block text-white/65 text-sm group-hover:text-white/85 transition-colors">+55 21 98765-4321</span>
+                  <span className="block text-white/65 text-sm group-hover:text-white/85 transition-colors">+55 11 99490-0765</span>
                 </span>
               </a>
             </div>
@@ -339,12 +368,13 @@ function App() {
             <h3 className="text-white text-2xl font-semibold mb-2">Envie uma mensagem</h3>
             <p className="text-white/65 text-sm mb-6">Preencha os campos e vamos conversar sobre seu projeto.</p>
 
-            <form className="space-y-5">
+            <form ref={contactFormRef} className="space-y-5" onSubmit={handleContactSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <label className="block">
                   <span className="block text-white/75 text-xs uppercase tracking-[0.18em] mb-2">Nome</span>
                   <input
                     type="text"
+                    name="name"
                     placeholder="Seu nome"
                     className="w-full rounded-lg border border-[#003366] bg-[#002347]/45 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-[#FF8E00] focus:ring-2 focus:ring-[#FF8E00]/20 transition-all"
                   />
@@ -353,7 +383,8 @@ function App() {
                   <span className="block text-white/75 text-xs uppercase tracking-[0.18em] mb-2">E-mail</span>
                   <input
                     type="email"
-                    placeholder="seuemail@dominio.com"
+                    name="email"
+                    placeholder="seuemail@gmail.com"
                     className="w-full rounded-lg border border-[#003366] bg-[#002347]/45 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-[#FF8E00] focus:ring-2 focus:ring-[#FF8E00]/20 transition-all"
                   />
                 </label>
@@ -363,6 +394,7 @@ function App() {
                 <span className="block text-white/75 text-xs uppercase tracking-[0.18em] mb-2">Mensagem</span>
                 <textarea
                   rows="5"
+                  name="message"
                   placeholder="Conte brevemente sobre sua ideia ou projeto..."
                   className="w-full rounded-lg border border-[#003366] bg-[#002347]/45 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:border-[#FF8E00] focus:ring-2 focus:ring-[#FF8E00]/20 transition-all resize-none"
                 />
@@ -378,6 +410,10 @@ function App() {
                   <path d="m12 5 7 7-7 7" />
                 </svg>
               </button>
+
+              {contactStatus ? (
+                <p className="text-sm text-white/70">{contactStatus}</p>
+              ) : null}
             </form>
           </div>
         </div>

@@ -42,53 +42,81 @@ function App() {
   const projects = [
     {
       id: 1,
+      title: 'Portfólio Geral',
+      shortDesc: 'Apresentação completa com os trabalhos selecionados do portfólio',
+      fullDesc: 'Arquivo de apresentação com a visão geral do meu portfólio, reunindo os trabalhos mais fortes em uma sequência visual para leitura rápida e compartilhamento.',
+      context: 'Arquivo: Apresentação geral do portfólio',
+      disciplines: ['Portfólio', 'Apresentação', 'Seleção de Trabalhos'],
+      image: '[Capa do portfólio geral]',
+      pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
+    },
+    {
+      id: 2,
       title: 'Sucrilhos x NBA',
       shortDesc: 'Edição especial de cereal com colaboração NBA',
       fullDesc: 'Na matéria Instrumentação Digital, tivemos que criar uma edição especial de caixa de cereal usando mockups Adobe. Escolhi a marca Sucrilhos para colaborar com a NBA, a liga de basquete americana famosa por suas parcerias com marcas como Hellmann\'s e Nescau. A energia matinal que o produto oferece combina perfeitamente com o universo esportivo, e o sabor de xarope de bordo (Maple Syrup) remete à cultura norte-americana, tornando a colaboração coerente e impactante.',
       context: 'Disciplina: Instrumentação Digital | Objetivo: Fundamentais do pacote Adobe',
       disciplines: ['Design Gráfico', 'Mockup 3D', 'Branding'],
-      image: '[MOCKUP CAIXA SUCRILHOS x NBA - 300g - TIGRE TONY COM NBA]',
+      coverType: 'image',
+      coverSrc: '/mockup_caixa_sucrilhos.jpg.jpeg',
+      coverAlt: 'Mockup da caixa Sucrilhos x NBA',
       pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
     },
     {
-      id: 2,
+      id: 3,
       title: 'Thés Botaniques Phebo',
       shortDesc: 'Experiência sensorial completa de chás e perfumes',
       fullDesc: 'Na disciplina de Criação Publicitária, reimaginei a marca Phebo para 2050, inspirado no case de sucesso dos sorvetes Granado. Criei os "Thés Botaniques" - uma linha que combina chás e perfumes com fragrâncias similares, proporcionando uma experiência sensorial integrada. Cada kit contém 12 sachês de chá (2 de cada sabor) e 6 amostras de fragrâncias de 15ml. O design da caixa integra flores como Lavanda, Flor de Laranjeira, Lírio-do-vale, Magnólia, Jasmim Sambac e Rosa Damascena, remetendo a um jardim sofisticado. Trabalhei com carinho nos detalhes, inspirando-me nas pirâmides de fragrâncias do Fragrantica para a apresentação visual.',
       context: 'Disciplina: Criação Publicitária | Objetivo: Reimaginar produto para 2050',
       disciplines: ['Design de Embalagem', 'Criação Publicitária', 'Perfumaria'],
-      image: '[CAIXAS PHEBO THÉS BOTANIQUES + VIDROS DE PERFUME - ROXO/ROSA/VERDE + ESTRUTURA OLFATIVA]',
-      pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
+      image: '[Caixa Phebo Thés Botaniques + perfumes]',
+      pdf: '/phebo novo.pdf'
     },
     {
-      id: 3,
+      id: 4,
       title: 'Bolovo Eco Club',
       shortDesc: 'Campanha criativa para lifestyle sustentável e descolado',
       fullDesc: 'Em Criação Publicitária, desenvolvi uma campanha criativa e visualmente impactante para a Bolovo Eco Club, explorando identidade visual e público-alvo jovem interessado em sustentabilidade. O desafio era conscientizar sem ser "careta" ou "chato", tornando o ativismo mais descolado e próximo do consumidor. Participei do desenvolvimento de conceitos, design de peças de roupa, anúncios em formatos diversos (vídeo vertical 15s para TikTok, trailer longo, peças de rádio) e mantive coerência visual em todas as entregas com o garoto propaganda Fleezus.',
       context: 'Disciplina: Criação Publicitária | Foco: Campanha integrada e identidade visual',
       disciplines: ['Campanha Integrada', 'Design de Vestuário', 'Produção Audiovisual'],
-      image: '[FLEEZUS COMO GAROTO PROPAGANDA + OUTDOOR METRÔ + MOCKUPS 4 CAMISETAS DIFERENTES CORES]',
-      pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
+      image: '[Bolovo Eco Club - campanha e peças]',
+      pdf: '/Bolovo Eco Club.pdf'
     },
     {
-      id: 4,
+      id: 5,
       title: 'Rota Alternativa',
       shortDesc: 'Livro de receitas de culinária da Ásia Central',
       fullDesc: 'Na disciplina de Instrumentação Digital II, aprendemos os fundamentos do InDesign criando um livro de receitas. No "Rota Alternativa", explorei a culinária de países com pouco destaque - a Ásia Central. Merguei na cultura e culinária do Quirguistão, Tajiquistão e Turcomenistão, desenvolvendo diagramação com fundo em papel pardo, receitas como Besh Barmak, Plov e Pishme, com seções de Modo de Preparo, Finalização e curiosidades "Você Sabia?". Um processo muito divertido que resultou em um livro visualmente coeso e educativo.',
       context: 'Disciplina: Instrumentação Digital II | Foco: Fundamentos InDesign',
       disciplines: ['Design Editorial', 'Diagramação', 'Pesquisa Cultural'],
-      image: '[CAPA + PÁGINAS INTERNAS LIVRO ROTA ALTERNATIVA - FUNDO PAPEL PARDO - RECEITAS ÁSIA CENTRAL]',
-      pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
+      image: '[Rota Alternativa - capa e páginas internas]',
+      pdf: '/Rota Alternativa.pdf'
     },
     {
-      id: 5,
+      id: 6,
       title: 'Identidade Visual - Gedde Mack',
       shortDesc: 'Sistema de identidade visual completo para grupo de pesquisa',
       fullDesc: 'Como membro ativo do Grupo de Estudos de Direito Desportivo Empresarial do Mackenzie, participei na criação de artes, posts e edição de vídeos. Formulei uma nova identidade visual completa para o grupo: paleta de cores, fontes, padronagem e um novo logo que refletisse a modernidade e profissionalismo do grupo. O sistema visual foi aplicado em clipping semanal, posts padronizados e toda comunicação externa.',
       context: 'Contexto: Membro ativo do GEDDE MACK (Grupo de Estudos de Direito Desportivo Empresarial)',
       disciplines: ['Identidade Corporativa', 'Design de Posts', 'Edição de Vídeo'],
-      image: '[JORNAL CLIPPING + POSTS PADRONIZADOS + SLIDE ANTES/DEPOIS LOGO]',
-      pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
+      image: '[Nova identidade visual GEDDE Mack]',
+      pdf: '/Nova ID Visual GEDDE.pdf'
+    },
+    {
+      id: 7,
+      title: '05R - Portugal',
+      shortDesc: 'Projeto sobre a Europa que fala com você',
+      fullDesc: 'Material recente em PDF com abordagem editorial e visual do tema Portugal, preparado para leitura direta no navegador e compartilhamento.',
+      context: 'Arquivo: 05R - Portugal - a Europa que fala com você',
+      disciplines: ['Editorial', 'Diagramação', 'Projeto Visual'],
+      image: '[05R Portugal - capa e conteúdo]',
+      pdf: '/05R - Portugal - a Europa que fala com você (1).pdf',
+      extraFiles: [
+        {
+          label: 'Imagem original',
+          href: '/IMG_0337.heic'
+        }
+      ]
     }
   ]
 
@@ -218,7 +246,15 @@ function App() {
                 {/* Imagem */}
                 <div className={`flex items-center justify-center ${idx % 2 === 1 ? 'md:col-start-2' : ''}`}>
                   <div className={`w-full aspect-square rounded-lg border flex items-center justify-center overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 ${idx % 2 === 0 ? 'bg-gradient-to-br from-[#002347] via-[#001f3f] to-[#001428] border-[#003366] hover:border-[#FF8E00]' : 'bg-gradient-to-br from-[#001f3f] via-[#002347] to-[#003366] border-[#FF8E00]/35 hover:border-[#FF8E00]'}`}>
-                    <span className="text-white/60 text-sm text-center">{project.image}</span>
+                    {project.coverType === 'image' ? (
+                      <img
+                        src={project.coverSrc}
+                        alt={project.coverAlt}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-white/60 text-sm text-center">{project.image}</span>
+                    )}
                   </div>
                 </div>
 
@@ -254,6 +290,22 @@ function App() {
                       Ver PDF
                     </a>
                   </div>
+
+                  {project.extraFiles?.length ? (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.extraFiles.map((file) => (
+                        <a
+                          key={file.href}
+                          href={encodeURI(file.href)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-4 py-2 border border-[#003366] bg-[#001428]/40 text-white/90 rounded-sm hover:border-[#FF8E00]/70 hover:text-white transition-all duration-300 text-xs tracking-wider uppercase"
+                        >
+                          {file.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
 
                   {expandedProject === project.id && (
                     <div className={`rounded-lg p-6 mb-6 border ${idx % 2 === 0 ? 'bg-[#001428]/70 border-[#003366]' : 'bg-[#002347]/70 border-[#FF8E00]/30'}`}>

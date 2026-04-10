@@ -1,5 +1,68 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist'
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
+
+GlobalWorkerOptions.workerSrc = pdfWorker
+
+function PdfCover({ pdf, title, fallbackText }) {
+  const canvasRef = useRef(null)
+  const [hasError, setHasError] = useState(false)
+
+  useEffect(() => {
+    let isMounted = true
+
+    const renderPdfCover = async () => {
+      try {
+        const loadingTask = getDocument(encodeURI(pdf))
+        const document = await loadingTask.promise
+        const page = await document.getPage(1)
+        const viewport = page.getViewport({ scale: 1 })
+        const targetWidth = 700
+        const scale = targetWidth / viewport.width
+        const scaledViewport = page.getViewport({ scale })
+        const canvas = canvasRef.current
+
+        if (!canvas || !isMounted) {
+          return
+        }
+
+        const context = canvas.getContext('2d')
+        canvas.width = scaledViewport.width
+        canvas.height = scaledViewport.height
+
+        await page.render({
+          canvasContext: context,
+          viewport: scaledViewport,
+        }).promise
+
+        document.cleanup()
+      } catch {
+        if (isMounted) {
+          setHasError(true)
+        }
+      }
+    }
+
+    renderPdfCover()
+
+    return () => {
+      isMounted = false
+    }
+  }, [pdf])
+
+  if (hasError) {
+    return <span className="text-white/60 text-sm text-center">{fallbackText || `[Prévia indisponível de ${title}]`}</span>
+  }
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="block h-auto w-auto max-h-full max-w-full rounded-md"
+      aria-label={`Capa do PDF ${title}`}
+    />
+  )
+}
 
 function App() {
   const [activeNav, setActiveNav] = useState(null)
@@ -245,13 +308,15 @@ function App() {
               <div key={project.id} className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-start ${idx % 2 === 1 ? 'md:grid-flow-dense' : ''}`}>
                 {/* Imagem */}
                 <div className={`flex items-center justify-center ${idx % 2 === 1 ? 'md:col-start-2' : ''}`}>
-                  <div className={`w-full aspect-square rounded-lg border flex items-center justify-center overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 ${idx % 2 === 0 ? 'bg-gradient-to-br from-[#002347] via-[#001f3f] to-[#001428] border-[#003366] hover:border-[#FF8E00]' : 'bg-gradient-to-br from-[#001f3f] via-[#002347] to-[#003366] border-[#FF8E00]/35 hover:border-[#FF8E00]'}`}>
-                    {project.coverType === 'image' ? (
+                  <div className={`w-full aspect-square rounded-lg border flex items-center justify-center overflow-hidden p-2 transition-all duration-300 hover:-translate-y-1 ${idx % 2 === 0 ? 'bg-gradient-to-br from-[#002347] via-[#001f3f] to-[#001428] border-[#003366] hover:border-[#FF8E00]' : 'bg-gradient-to-br from-[#001f3f] via-[#002347] to-[#003366] border-[#FF8E00]/35 hover:border-[#FF8E00]'}`}>
+                    {project.coverSrc ? (
                       <img
                         src={project.coverSrc}
-                        alt={project.coverAlt}
-                        className="h-full w-full object-cover"
+                        alt={project.coverAlt || project.title}
+                        className="block h-auto w-auto max-h-full max-w-full object-contain rounded-md"
                       />
+                    ) : project.pdf ? (
+                      <PdfCover pdf={project.pdf} title={project.title} fallbackText={project.image} />
                     ) : (
                       <span className="text-white/60 text-sm text-center">{project.image}</span>
                     )}
@@ -434,7 +499,7 @@ function App() {
 
           <div className="rounded-2xl border border-[#003366] bg-[#001428]/65 backdrop-blur-sm p-6 md:p-8 shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
             <h3 className="text-white text-2xl font-semibold mb-2">Envie uma mensagem</h3>
-            <p className="text-white/65 text-sm mb-6">Preencha os campos e vamos conversar sobre seu projeto.</p>
+            <p className="text-white/65 text-sm mb-6">Preencha os campos e vamos conversar.</p>
 
             <form ref={contactFormRef} className="space-y-5" onSubmit={handleContactSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

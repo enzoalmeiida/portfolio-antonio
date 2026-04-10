@@ -167,7 +167,7 @@ function App() {
     },
     {
       id: 7,
-      title: '05R - Portugal',
+      title: 'Portugal: a Europa que fala com você',
       shortDesc: 'Projeto sobre a Europa que fala com você',
       fullDesc: 'Material recente em PDF com abordagem editorial e visual do tema Portugal, preparado para leitura direta no navegador e compartilhamento.',
       context: 'Arquivo: 05R - Portugal - a Europa que fala com você',

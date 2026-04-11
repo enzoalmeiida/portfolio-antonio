@@ -221,7 +221,7 @@ function App() {
       </nav>
 
       {/* HERO SECTION */}
-      <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-6 pt-16 bg-[radial-gradient(circle_at_top_left,_rgba(255,142,0,0.22),_transparent_24%),radial-gradient(circle_at_75%_20%,_rgba(0,51,102,0.68),_transparent_28%),linear-gradient(180deg,_rgba(0,36,71,0.92),_rgba(0,20,40,0.96))]">
+      <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-6 pt-16 bg-[linear-gradient(180deg,_rgba(0,14,28,0.68),_rgba(0,14,28,0.68)),linear-gradient(115deg,_rgba(0,20,40,0.90)_8%,_rgba(0,35,71,0.78)_44%,_rgba(255,142,0,0.14)_100%),radial-gradient(circle_at_top_left,_rgba(255,142,0,0.14),_transparent_34%),radial-gradient(circle_at_80%_28%,_rgba(0,51,102,0.50),_transparent_42%),url('/fotohero.jpeg')] bg-[length:100%_auto] bg-center bg-no-repeat">
         <div className="max-w-4xl text-center">
           <div className="mx-auto mb-8 h-px w-28 bg-gradient-to-r from-transparent via-[#FF8E00] to-transparent" />
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-6 leading-tight">
@@ -400,8 +400,12 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             {/* Imagens */}
             <div className="space-y-6">
-              <div className="aspect-square bg-gradient-to-br from-[#001428] via-[#002347] to-[#003366] rounded-lg border border-[#003366] flex items-center justify-center overflow-hidden">
-                <span className="text-white/60 text-sm text-center px-4">[CAPA CD/DVD "WE'VE BEEN HERE BEFORE" - VAPORWAVE ROXO]</span>
+              <div className="aspect-square rounded-lg border border-[#003366] overflow-hidden bg-gradient-to-br from-[#001428] via-[#002347] to-[#003366] p-2">
+                <img
+                  src="/foto-musica.jpeg"
+                  alt="Foto da seção de música"
+                  className="block h-full w-full object-contain rounded-md"
+                />
               </div>
               <div className="aspect-square bg-gradient-to-br from-[#FF8E00]/15 via-[#001f3f] to-[#002347] rounded-lg border border-[#FF8E00]/30 flex items-center justify-center overflow-hidden">
                 <span className="text-white/60 text-sm text-center px-4">[LOGIC PRO - INTERFACE COM MÚLTIPLAS PISTAS GRAVADAS]</span>

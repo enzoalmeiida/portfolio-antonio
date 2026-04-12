@@ -265,8 +265,12 @@ function App() {
               <div className="aspect-square bg-gradient-to-br from-[#002347] to-[#001428] rounded-lg border border-[#003366] flex items-center justify-center overflow-hidden shadow-[0_0_0_1px_rgba(255,142,0,0.08)]">
                 <span className="text-white/60 text-sm text-center px-4">[FOTO ANTONIO EM MUSEU - "A MORTE DE MARAT"]</span>
               </div>
-              <div className="aspect-square bg-gradient-to-br from-[#001f3f] via-[#002347] to-[#001428] rounded-lg border border-[#FF8E00]/40 flex items-center justify-center overflow-hidden shadow-[0_0_0_1px_rgba(0,51,102,0.2)]">
-                <span className="text-white/60 text-sm text-center px-4">[COSTAS CAMISETA "POST ARCHIVE SPORTSWEAR APPAREL FROM LONDON"]</span>
+              <div className="aspect-square bg-gradient-to-br from-[#001f3f] via-[#002347] to-[#001428] rounded-lg border border-[#FF8E00]/40 overflow-hidden shadow-[0_0_0_1px_rgba(0,51,102,0.2)]">
+                <img
+                  src="/IMG_0337.jpg"
+                  alt="Antonio em museu"
+                  className="block h-full w-full object-cover object-center"
+                />
               </div>
             </div>
 

@@ -134,7 +134,7 @@ function App() {
       context: 'Arquivo: Portfólio em PDF',
       disciplines: ['Portfólio', 'Apresentação', 'Seleção de Trabalhos'],
       image: '[Capa do portfólio geral]',
-      pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
+      pdf: '/mockup_caixa_sucrilhos.jpg.pdf'
     },
     {
       id: 2,

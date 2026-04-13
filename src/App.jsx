@@ -134,7 +134,7 @@ function App() {
       context: 'Arquivo: Portfólio em PDF',
       disciplines: ['Portfólio', 'Apresentação', 'Seleção de Trabalhos'],
       image: '[Capa do portfólio geral]',
-      pdf: '/mockup_caixa_sucrilhos.jpg.pdf'
+      pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
     },
     {
       id: 2,
@@ -146,7 +146,7 @@ function App() {
       coverType: 'image',
       coverSrc: '/mockup_caixa_sucrilhos.jpg.jpeg',
       coverAlt: 'Mockup da caixa Sucrilhos x NBA',
-      pdf: '/Cream and Black Modern Creative Portfolio Presentation.pdf'
+      pdf: '/mockup_caixa_sucrilhos.jpg.pdf'
     },
     {
       id: 3,

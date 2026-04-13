@@ -457,10 +457,10 @@ function App() {
                   Minha produção musical pode explorar diferentes contextos e gêneros, desde músicas eletrônicas e trap até ritmos como o piseiro e a seresta.
                 </p>
                 <p>
-                  A música é uma parte crucial do meu cotidiano e não podia deixá-la de fora.
+                  Abaixo, você pode escutar uma breve composição que realizei para a minha campanha <span className="text-white font-semibold">Cartas de Afeto</span>, parte de um trabalho relacionado ao <span className="text-white font-semibold">Inbound Marketing</span>.
                 </p>
                 <p>
-                  Cada som, cada trilha e cada improviso é um pouco de quem eu sou.
+                  Ela foi feita com <span className="text-white font-semibold">7 pistas de instrumentos VST</span> e <span className="text-white font-semibold">1 de áudio</span>, e serviu de trilha sonora para o meu vídeo sobre a etapa de fidelização no funil da campanha.
                 </p>
                 <div className="pt-2">
                   <button
@@ -471,7 +471,7 @@ function App() {
                     {isMusicPlaying ? 'Pausar áudio' : 'Ouvir áudio'}
                   </button>
                   <p className="mt-3 text-white/60 text-sm">
-                    A breve composição da campanha Cartas de Afeto está disponível aqui.
+                    Escute a composição da campanha Cartas de Afeto diretamente aqui.
                   </p>
                 </div>
               </div>

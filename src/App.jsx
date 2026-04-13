@@ -69,6 +69,8 @@ function App() {
   const [expandedProject, setExpandedProject] = useState(null)
   const [contactStatus, setContactStatus] = useState('')
   const contactFormRef = useRef(null)
+  const musicAudioRef = useRef(null)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
 
   const contactEmail = 'antoniozakzukduarte@gmail.com'
   const emailJsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
@@ -79,6 +81,27 @@ function App() {
     const element = document.getElementById(id)
     element?.scrollIntoView({ behavior: 'smooth' })
     setActiveNav(id)
+  }
+
+  const toggleMusicPlayback = async () => {
+    const audio = musicAudioRef.current
+
+    if (!audio) {
+      return
+    }
+
+    if (audio.paused) {
+      try {
+        await audio.play()
+        setIsMusicPlaying(true)
+      } catch {
+        setIsMusicPlaying(false)
+      }
+      return
+    }
+
+    audio.pause()
+    setIsMusicPlaying(false)
   }
 
   const handleContactSubmit = async (event) => {
@@ -439,7 +462,27 @@ function App() {
                 <p>
                   Cada som, cada trilha e cada improviso é um pouco de quem eu sou.
                 </p>
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={toggleMusicPlayback}
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-[#FF9800] text-white font-semibold uppercase tracking-wider text-sm hover:bg-[#E68A00] transition-all duration-300 shadow-lg shadow-[#FF9800]/25"
+                  >
+                    {isMusicPlaying ? 'Pausar áudio' : 'Ouvir áudio'}
+                  </button>
+                  <p className="mt-3 text-white/60 text-sm">
+                    A breve composição da campanha Cartas de Afeto está disponível aqui.
+                  </p>
+                </div>
               </div>
+              <audio
+                ref={musicAudioRef}
+                src={encodeURI('/Trilha Sonora - vídeo da campanha Cartas de Afeto.wav')}
+                preload="none"
+                onEnded={() => setIsMusicPlaying(false)}
+                onPause={() => setIsMusicPlaying(false)}
+                onPlay={() => setIsMusicPlaying(true)}
+              />
             </div>
           </div>
         </div>

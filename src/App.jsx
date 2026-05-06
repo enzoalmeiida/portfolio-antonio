@@ -7,9 +7,38 @@ GlobalWorkerOptions.workerSrc = pdfWorker
 
 function PdfCover({ pdf, title, fallbackText }) {
   const canvasRef = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
   const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
+    const canvas = canvasRef.current
+
+    if (!canvas || isVisible) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px 0px' }
+    )
+
+    observer.observe(canvas)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [isVisible])
+
+  useEffect(() => {
+    if (!isVisible) {
+      return undefined
+    }
+
     let isMounted = true
 
     const renderPdfCover = async () => {
@@ -49,7 +78,7 @@ function PdfCover({ pdf, title, fallbackText }) {
     return () => {
       isMounted = false
     }
-  }, [pdf])
+  }, [isVisible, pdf])
 
   if (hasError) {
     return <span className="text-white/60 text-sm text-center">{fallbackText || `[Prévia indisponível de ${title}]`}</span>
@@ -283,6 +312,8 @@ function App() {
                 <img
                   src="/fotoantonio-musica.jpeg"
                   alt="Antonio em museu"
+                  loading="lazy"
+                  decoding="async"
                   className="block h-full w-full object-cover object-center"
                 />
               </div>
@@ -290,6 +321,8 @@ function App() {
                 <img
                   src="/IMG_0337.jpg"
                   alt="Antonio em museu"
+                  loading="lazy"
+                  decoding="async"
                   className="block h-full w-full object-cover object-center"
                 />
               </div>
@@ -338,6 +371,8 @@ function App() {
                       <img
                         src={project.coverSrc}
                         alt={project.coverAlt || project.title}
+                        loading="lazy"
+                        decoding="async"
                         className="block h-auto w-auto max-h-full max-w-full object-contain rounded-md"
                       />
                     ) : project.pdf ? (
@@ -429,6 +464,8 @@ function App() {
                 <img
                   src="/foto-musica.jpeg"
                   alt="Antonio ao piano com Logic Pro"
+                  loading="lazy"
+                  decoding="async"
                   className="block h-full w-full object-cover object-center"
                 />
               </div>
@@ -436,6 +473,8 @@ function App() {
                 <img
                   src="/fotoantonio-museu.jpeg"
                   alt="Interface Logic Pro"
+                  loading="lazy"
+                  decoding="async"
                   className="block h-full w-full object-cover object-center"
                 />
               </div>
